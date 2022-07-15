@@ -1,8 +1,18 @@
 require('colors');
 
+const { Menu } = require('./helpers/mensajes.js');
+
 const main = async() => {
 
-    console.log("hola mundo!");
+    let opt = '';
+
+    do{
+
+        opt = await Menu();
+
+    }while(opt != '7');
+
+    
 
 }
 
