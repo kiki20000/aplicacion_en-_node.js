@@ -1,11 +1,16 @@
+const fs = require('fs');
+
 const axios = require('axios');
 
 class Busquedas{
 
-    historial = ['Barcelona', 'Alicante'];
+   historial = ['elche', 'Alicante'];
+
+    dbPath = './db/database.json';
 
     constructor(){
         //Leer db si existe
+        this.leerDB();
     }
 
     get paramsMapbox(){
@@ -76,13 +81,42 @@ class Busquedas{
         }
     }
 
-   /* agregarHistorial(){
+    agregarHistorial(lugar = ''){
+        
+        /*if(this.historial.includes(lugar.toLocaleLowerCase())){
+            return;
+        }*/
+        
         //Prevenir duplicados
-        this.historial.unshift(lugar);
+        //this.historial.unshift(lugar);
 
         //Grabar en DB
+        //this.guardarBD();
+        
+    }
 
-    }*/
+    guardarBD(){
+
+        const payload = {
+            historial: this.historial
+        };
+
+        fs.writeFileSync(this.dbPath, JSON.stringify(payload));
+    }
+
+    leerDB(){
+
+        if(!fs.existsSync(this.dbPath)){
+            return;
+        }
+
+        const info = fs.readFileSync(this.dbPath, {encoding: 'utf-8'});
+        const data = JSON.parse(info);
+
+        this.historial = data.historial;
+
+    }
+
 
 }
 

@@ -29,6 +29,7 @@ const main = async() => {
 
                 //Guardar en DB
                 //busquedas.agregarHistorial(lugarSeleccionado.nombre);
+                busquedas.agregarHistorial(lugarSeleccionado.nombre);
 
                 //Clima
                 const clima = await busquedas.climaLugar(lugarSeleccionado.lat , lugarSeleccionado.lng);
@@ -45,15 +46,15 @@ const main = async() => {
 
             break;
 
-            /*case 2:
+            case 2:
 
-            busquedas.historial.forEach((lugar,i) => {
-                const id = `${i + 1}`;
-                console.log(`${id} ${lugar}`);
-            })
+                busquedas.historial.forEach((lugar,i) => {
+                    const id = `${i + 1}`;
+                    console.log(`${id} ${lugar}`);
+                });
 
 
-            break;*/
+            break;
 
         }
 
